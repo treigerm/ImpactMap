@@ -1,0 +1,27 @@
+#map {
+  height: 180px;
+}
+
+.stat {
+  text-align: center;
+  margin-top: 60px;
+}
+
+.stat-mid {
+  border-right: 1px solid lightgray;
+  border-left: 1px solid lightgray;
+}
+
+.stat-title {
+  margin-bottom: 30px;
+  margin-top: 100px;
+}
+
+.stat-row {
+  text-align: center;
+}
+
+.footer {
+  margin-top: 150px;
+  text-align: center;
+}
