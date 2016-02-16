@@ -1,5 +1,5 @@
-#map {
-  height: 180px;
+#banner {
+  margin-top: -20px;
 }
 
 .stat {
@@ -24,4 +24,23 @@
 .footer {
   margin-top: 150px;
   text-align: center;
+}
+
+.maps {
+  text-align: center;
+}
+
+img.map {
+  margin-bottom: 10px;
+}
+
+.img-responsive-own {
+    max-width: 100%;
+    height: auto;
+}
+
+@media only screen and (max-width: 1200px) {
+  .stat-mid {
+    border: none;
+  }
 }

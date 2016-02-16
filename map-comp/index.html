@@ -7,14 +7,6 @@
     <link rel="stylesheet" href="theme/bootstrap.css" media="screen">
     <link rel="stylesheet" href="theme/usebootstrap.css">
     <link rel="stylesheet" href="styles/style.css" />
-    <script src='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.js'></script>
-    <link href='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.css' rel='stylesheet' />
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
-    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
-    <link rel="stylesheet" type="text/css" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
-
-      <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js'></script>
-      <script type='text/javascript' src='http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2'></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -23,29 +15,6 @@
     <![endif]-->
   </head>
   <body>
-    <div class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <a href="#" class="navbar-brand">MSF Map Change Viewer</a>
-          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        </div>
-        <div class="navbar-collapse collapse" id="navbar-main">
-
-
-		  <ul class="nav navbar-nav navbar-right">
-            <li><a href="http://usebootstrap.com/" target="_blank">Login</a></li>
-            <li><a href="http://usebootstrap.com/" target="_blank">Sign Up</a></li>
-		  </ul>
-
-        </div>
-      </div>
-    </div>
-
-
     <div class="container">
 
       <div class="page-header" id="banner">
@@ -57,9 +26,13 @@
         </div>
       </div>
 
-      <div id="map1" style="height: 440px; width: 50%; border: 1px solid #AAA; display: block-inline; float: left;"></div>
+      <div class="maps">
 
-      <div id="map2" style="height: 440px; width: 50%; border: 1px solid #AAA; display: block-inline; float: right;"></div>
+        <img src="images/mapSpain.png" alt="" class = "img-responsive-own map" />
+
+        <img src="images/mapSpain.png" alt="" class = "img-responsive-own map"/>
+
+      </div>
 
       <div style="height:5px; width:100%; display: inline-block">&nbsp;</div>
 
@@ -70,17 +43,20 @@
 
           </div>
           <div class="col-lg-4 stat">
+              <img src="images/uni.png" alt="" />
               <h3>3</h3>
               <h4>Schools in the area</h2>
           </div>
 
           <div class="col-lg-4 stat stat-mid">
+            <img src="images/first-aid-kit.png" alt="" />
             <h3>1</h3>
             <h4>Hospital in the area</h2>
           </div>
 
 
           <div class="col-lg-4 stat">
+            <img src="images/earth.png" alt="" />
             <h3>2345</h3>
             <h4>km<sup>2</sup> of area covered</h2>
           </div>
@@ -89,13 +65,14 @@
 
     <div class="footer">
   <div class="container">
-    <p class="text-muted">This Website was created by LOL WTF and OMG.</p>
+    <p class="text-muted">
+      This Website was created by LOL WTF and OMG. Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from
+      <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"
+      title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
+    </p>
+
   </div>
 </div>
-
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="bootstrap/bootstrap.min.js"></script>
-	   <script src="bootstrap/usebootstrap.js"></script>
     <script src="script/map.js"></script>
   </body>
 </html>
