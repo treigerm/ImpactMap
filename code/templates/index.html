@@ -45,11 +45,13 @@
 
             <!-- Region selector, could be populated by @jazon's code -->
             <select name="region" class="form-control js-example-basic-single">
-              <option value="CAF">Central African Republic</option>
-              <option value="NI">Niger</option>
-              <option value="BF">Burkina Faso</option>
-              <option value="MA">Mali</option>
-            </select>
+              <!-- code below fetches country names in XML -->
+
+              {% for country in countries %}
+              <option>{{ country.name }}</option>
+              {% endfor %}
+
+            </select>            
           </div>
 
           <div class="form-group">
