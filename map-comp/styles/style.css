@@ -1,0 +1,46 @@
+#banner {
+  margin-top: -20px;
+}
+
+.stat {
+  text-align: center;
+  margin-top: 60px;
+}
+
+.stat-mid {
+  border-right: 1px solid lightgray;
+  border-left: 1px solid lightgray;
+}
+
+.stat-title {
+  margin-bottom: 30px;
+  margin-top: 100px;
+}
+
+.stat-row {
+  text-align: center;
+}
+
+.footer {
+  margin-top: 150px;
+  text-align: center;
+}
+
+.maps {
+  text-align: center;
+}
+
+img.map {
+  margin-bottom: 10px;
+}
+
+.img-responsive-own {
+    max-width: 100%;
+    height: auto;
+}
+
+@media only screen and (max-width: 1200px) {
+  .stat-mid {
+    border: none;
+  }
+}
