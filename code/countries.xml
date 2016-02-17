@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<Countries>
+    <Country>
+        <Name>Central African Republic</Name>
+        <PopulationDensity>7.71183023532056</PopulationDensity>
+        <MobileOwners>31.3598712988164</MobileOwners>
+        <WaterAccess>54.4</WaterAccess>
+    </Country>
+    <Country>
+        <Name>Hungary</Name>
+        <PopulationDensity>108.932652159505</PopulationDensity>
+        <MobileOwners>118.053828318504</MobileOwners>
+        <WaterAccess>100.0</WaterAccess>
+    </Country>
+</Countries>

@@ -7,6 +7,9 @@ import json, urllib
 import mysql.connector
 from mysql.connector import errorcode
 
+# import country info file (local)
+import country_info
+
 # Flask imports
 
 from flask import Flask
@@ -16,6 +19,10 @@ from flask import render_template
 from flask import request, redirect
 
 app = Flask(__name__)
+
+# get country list
+countries = country_info.getCountryList()
+#countries2 = ['France','Luxembourg','Belgium','Germany']
 
 # setup DB connection, cursor
 
@@ -40,7 +47,7 @@ else:
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html',countries=countries)
 
 @app.route('/search', methods = ['POST'])
 def search():
@@ -56,6 +63,10 @@ def search():
 	# end date string split
 	mm, dd, yyyy = end_date.split('/')
 	end_date = dd + mm + yyyy
+
+	# non OSM data grab
+
+	# COMPLETE THIS
 
 	# creating db instance with form date
 	data_search = (region, start_date, end_date, 0, 0, 0, 0)
@@ -85,7 +96,4 @@ def page_not_found(error):
 if __name__ == '__main__':
     app.run(debug=True)
 
-# JSON getter example
-
-j = json.loads('{"one" : "1", "two" : "2", "three" : "3"}')
-print j['two']
+ 
