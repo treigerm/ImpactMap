@@ -16,24 +16,31 @@ h1 span {
   font-weight: 900;
 }
 
-
-
 #banner {
   margin-top: -20px;
 }
 
-.stat {
-  text-align: center;
-  margin-top: 60px;
+.Count {
+  font-size: 3.8vw;
 }
 
-.stat-mid {
+.stat {
+  text-align: center;
+  margin-top: 100px;
+  height: 250px;
+}
+
+/*.stat-mid {
   border-right: 1px solid lightgray;
   border-left: 1px solid lightgray;
 }
 
 .stat-mid-right {
   border-right: 1px solid lightgray;
+} */
+
+.color1 {
+  background-color: gray;
 }
 
 .stat-title {
@@ -45,13 +52,21 @@ h1 span {
   text-align: center;
 }
 
+a {
+  color: black;
+}
+
+a:hover {
+  color: black;
+}
+
 .footer {
   margin-top: 150px;
   text-align: center;
 }
 
 .img-responsive {
-    width: 100%;
+    min-width: 100%;
 }
 
 .map {
@@ -66,5 +81,8 @@ h1 span {
   }
   .stat-mid-right {
     border: none;
+  }
+  .col-lg-6 {
+    width: 100%;
   }
 }
