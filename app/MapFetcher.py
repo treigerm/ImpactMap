@@ -1,6 +1,10 @@
 import overpass
 import os
 import geojson
+import json
+import overpy
+import xml.etree.ElementTree as ET
+from StringIO import StringIO
 
 
 def get_current_map_data(min_lat, min_lon, max_lat, max_lon, responseformat="geojson"):
@@ -58,13 +62,32 @@ def save_file_in_res(data, name):
     # program will fail the next time
     os.chdir("../")
 
+# TO DO:
+# case insensitive
 def get_map_by_name(area_name, responseformat="geojson"):
     """Give area data from a given area name."""
-    overpass_api = overpass.API()
+    overpass_api = overpy.Overpass()
     query = lambda s:'node[name="%s"];%s(around:1000.0);out geom;' % (area_name, s)
-    get_data = lambda s: overpass_api.Get(query(s), responseformat=responseformat)
+    get_data = lambda s: overpass_api.query(query(s))
+    nodes = get_data("node").nodes
+    ways = get_data("way").ways
+    node_ids = map(lambda x: x.id, nodes)
+    way_ids = map(lambda x: x.id, ways)
 
-    return [get_data("node"), get_data("way")]
+    return [node_ids, way_ids]
+
+# TO DO:
+# get number of hostpitals, schools
+def get_num_hospitals(area_name):
+    overpass_api = overpass.API()
+    query = 'node[name="%s"];way(around:1000.0)[amenity="hospital"];out geom;' % (area_name)
+    data = overpass_api.Get(query, responseformat="xml")
+    tree = ET.parse('country_data.xml')
+    root = tree.getroot()
+    num_hospitals = dt["elements"][0]["count"]["total"]
+    return get_num_hospitals
+
+
 
 # currently just used for testing
 if __name__ == '__main__':
@@ -74,5 +97,4 @@ if __name__ == '__main__':
     center_lat, center_lon = -12.9153429, 30.6362802
 
     nodes, ways = get_map_by_name("Chitambo")
-    save_file_in_res(nodes, "nodes_chitambo.geojson")
-    save_file_in_res(ways, "ways_chitambo.geojson")
+    print nodes
