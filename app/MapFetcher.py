@@ -3,8 +3,7 @@ import os
 import geojson
 import json
 import overpy
-import xml.etree.ElementTree as ET
-from StringIO import StringIO
+import re
 
 
 def get_current_map(min_lat, min_lon, max_lat, max_lon, responseformat="geojson"):
@@ -61,6 +60,7 @@ def get_map_by_name(area_name):
 
 def get_past_map(area_name, date):
     """Give area data from a given area name."""
+    date = format_date(date)
     overpass_api = overpy.Overpass()
     query = lambda s:'[date:"%s"];node[name="%s"];%s(around:1000.0);out geom;' % (date, area_name, s)
     get_data = lambda s: overpass_api.query(query(s))
@@ -72,7 +72,8 @@ def get_past_map(area_name, date):
     return [node_ids, way_ids]
 
 def get_difference(area_name, date):
-    old_nodes, old_ways = get_past_map2(area_name, date)
+    """Gets the nodes which were added after a certain time."""
+    old_nodes, old_ways = get_past_map(area_name, date)
     new_nodes, new_ways = get_map_by_name(area_name)
 
     return [list(set(new_nodes)-set(old_nodes)), list(set(new_ways) - set(old_ways))]
@@ -88,17 +89,23 @@ def get_num_hospitals(area_name):
     num_hospitals = dt["elements"][0]["count"]["total"]
     return get_num_hospitals
 
+def format_date(date):
+    """Format date from YYYYMMDD to YYYY-MM-DDTHH-MM:SSZ."""
+    year = date[:4]
+    month = date[4:6]
+    day = date[6:8]
+    return "%s-%s-%sT00-01-00Z" % (year, month, day)
 
 
 # currently just used for testing
 if __name__ == '__main__':
     date = '2015-08-10T01:01:01Z'
+    date2 = "20150811"
     # coordinates of chitambo village
     min_lat, min_lon, max_lat, max_lon = -12.92, 30.62, -12.90, 30.64
     center_lat, center_lon = -12.9153429, 30.6362802
 
-    nodes, ways = get_map_by_name("Chitambo")
-    nodes2, ways2 = get_past_map("Chitambo", date)
-    nodes3, ways3 = get_difference("Chitambo", date)
+
+    nodes3, ways3 = get_difference("Chitambo", date2)
     print nodes3
     print len(nodes3)
