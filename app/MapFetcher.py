@@ -1,11 +1,8 @@
-# maybe just return function only ways
-
 import overpass
 import os
 import geojson
 import json
 import overpy
-import xml.etree.ElementTree as ET
 
 
 def get_ids(data):
@@ -77,9 +74,8 @@ def format_date(date):
     return "%s-%s-%sT00-01-00Z" % (year, month, day)
 
 
-# currently just used for testing
+# just used for testing
 if __name__ == '__main__':
-    date = '2015-08-10T01:01:01Z'
     date2 = "20130811"
     today = "20160218"
     # coordinates of chitambo village
