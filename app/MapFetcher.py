@@ -1,3 +1,5 @@
+# maybe just return function only ways
+
 import overpass
 import os
 import geojson
@@ -71,15 +73,18 @@ def get_past_map(area_name, date):
 
     return [node_ids, way_ids]
 
-def get_difference(area_name, date):
+# Can be made more efficient
+def get_difference(area_name, start_date, end_date):
     """Gets the nodes which were added after a certain time."""
-    old_nodes, old_ways = get_past_map(area_name, date)
+    old_nodes, old_ways = get_past_map(area_name, start_date)
+    new_nodes, new_ways = get_past_map(area_name, end_date)
+    difference_nodes = set(new_nodes)-set(old_nodes)
+    difference_ways = set(new_ways) - set(old_ways)
 
-    if len(old_nodes) == 0:
+    if len(difference_ways) == len(set(new_ways)):
         return []
 
-    new_nodes, new_ways = get_map_by_name(area_name)
-    return [list(set(new_nodes)-set(old_nodes)), list(set(new_ways) - set(old_ways))]
+    return [list(difference_nodes), list(difference_ways)]
 
 
 # TO DO:
@@ -105,12 +110,13 @@ def format_date(date):
 if __name__ == '__main__':
     date = '2015-08-10T01:01:01Z'
     date2 = "20130811"
+    today = "20160218"
     # coordinates of chitambo village
     min_lat, min_lon, max_lat, max_lon = -12.92, 30.62, -12.90, 30.64
     center_lat, center_lon = -12.9153429, 30.6362802
 
     try:
-        nodes3, ways3 = get_difference("Chitambo", date2)
+        nodes3, ways3 = get_difference("Chitambo", date2, today)
     except ValueError:
         print "It worked! Kanye would be proud!"
 
