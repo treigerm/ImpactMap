@@ -74,9 +74,13 @@ def get_past_map(area_name, date):
 def get_difference(area_name, date):
     """Gets the nodes which were added after a certain time."""
     old_nodes, old_ways = get_past_map(area_name, date)
-    new_nodes, new_ways = get_map_by_name(area_name)
 
+    if len(old_nodes) == 0:
+        return []
+
+    new_nodes, new_ways = get_map_by_name(area_name)
     return [list(set(new_nodes)-set(old_nodes)), list(set(new_ways) - set(old_ways))]
+
 
 # TO DO:
 # get number of hostpitals, schools
@@ -100,12 +104,15 @@ def format_date(date):
 # currently just used for testing
 if __name__ == '__main__':
     date = '2015-08-10T01:01:01Z'
-    date2 = "20150811"
+    date2 = "20130811"
     # coordinates of chitambo village
     min_lat, min_lon, max_lat, max_lon = -12.92, 30.62, -12.90, 30.64
     center_lat, center_lon = -12.9153429, 30.6362802
 
+    try:
+        nodes3, ways3 = get_difference("Chitambo", date2)
+    except ValueError:
+        print "It worked! Kanye would be proud!"
 
-    nodes3, ways3 = get_difference("Chitambo", date2)
-    print nodes3
-    print len(nodes3)
+    #print nodes3
+    #print len(nodes3)
