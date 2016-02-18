@@ -230,23 +230,24 @@ var phones = 120;
 var hospitals = 5023;
 var schools = 12;
 
+var TIME = 3;
 
-var numAnim = new CountUp("count1", 0, area, 0, 10);
+var numAnim = new CountUp("count1", 0, area, 0, TIME);
 numAnim.start();
 
-var numAnim = new CountUp("count2", 5, people, 0, 10);
+var numAnim = new CountUp("count2", 0, people, 0, TIME);
 numAnim.start();
 
-var numAnim = new CountUp("count3", 5, water, 0, 10);
+var numAnim = new CountUp("count3", 0, water, 0, TIME);
 numAnim.start();
 
-var numAnim = new CountUp("count4", 5, phones, 0, 10);
+var numAnim = new CountUp("count4", 0, phones, 0, TIME);
 numAnim.start();
 
-var numAnim = new CountUp("count5", 5, hospitals, 0, 10);
+var numAnim = new CountUp("count5", 0, hospitals, 0, TIME);
 numAnim.start();
 
-var numAnim = new CountUp("count6", 5, schools, 0, 10);
+var numAnim = new CountUp("count6", 0, schools, 0, TIME);
 numAnim.start();
 
 

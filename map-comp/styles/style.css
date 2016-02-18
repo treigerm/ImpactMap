@@ -20,18 +20,27 @@ h1 span {
   margin-top: -20px;
 }
 
+.Count {
+  font-size: 3.8vw;
+}
+
 .stat {
   text-align: center;
   margin-top: 100px;
+  height: 250px;
 }
 
-.stat-mid {
+/*.stat-mid {
   border-right: 1px solid lightgray;
   border-left: 1px solid lightgray;
 }
 
 .stat-mid-right {
   border-right: 1px solid lightgray;
+} */
+
+.color1 {
+  background-color: gray;
 }
 
 .stat-title {
