@@ -1,78 +1,85 @@
 import overpass
 import os
 import geojson
+import json
+import overpy
 
 
-def get_current_map_data(min_lat, min_lon, max_lat, max_lon, responseformat="geojson"):
-    """Gets the map-data in a given boundary. Remember min_lat < max_lat and min_lon < max_lon."""
-    overpass_api = overpass.API()
-    # runs query for node, way or relation
-    query = lambda s:'%s(%s, %s, %s, %s);out geom;' % (s, min_lat, min_lon, max_lat, max_lon)
-    get_data = lambda s: overpass_api.Get(query(s), responseformat=responseformat)
+def get_ids(data):
+    json_string = json.dumps(data)
+    j = json.loads(json_string)
+    node_ids = [ f["id"] for f in j["features"]]
+    return node_ids
 
-    return [get_data("node"), get_data("way")]
-
-def get_map_by_center_point(lat, lon, responseformat="geojson"):
-    """Gets the map data from a given area ID."""
-    overpass_api = overpass.API()
-    query = lambda s:'%s(around:100.0, %s, %s);out geom;' % (s, lat, lon)
-    get_data = lambda s: overpass_api.Get(query(s), responseformat=responseformat)
-
-    return [get_data("node"), get_data("way")]
-
-
-# TO-DO:
-def get_past_map_data(min_lat, min_lon, max_lat, max_lon, date, responseformat="geojson"):
-    """Gets the map-data of a given data. Date in format 'YYYY-MM-DDTHH:MM:SSZ'"""
-    end = 'http://overpass-api.de/api/interpreter?data=[date:"%s"];' % date
-    overpass_api = overpass.API(endpoint=end)
-
-    query = lambda s:'%s(%s, %s, %s, %s);out geom;' % (s, min_lat, min_lon, max_lat, max_lon)
-    get_data = lambda s: overpass_api.Get(query("node"), responseformat=responseformat)
-
-    return [get_data("node"), get_data("way")]
+def count_response(response):
+    json_string = json.dumps(response)
+    j = json.loads(json_string)
+    return len(j["features"])
 
 # TO DO:
-def get_difference(min_lat, min_lon, max_lat, max_lon, past_date, responseformat="geojson"):
-    """Gets the difference from a given event."""
-    end = 'http://overpass-api.de/api/interpreter?data=[diff:"%s"];' % date
-    overpass_api = overpass.API(endpoint=end)
-
-    query = lambda s:'%s(%s, %s, %s, %s);out geom;' % (s, min_lat, min_lon, max_lat, max_lon)
-    get_data = lambda s: overpass_api.Get(query(s), responseformat=responseformat)
-
-    return [get_data("node"), get_data("way")]
-
-# TO DO:
-# compatibility with different formats // not really necessary
-def save_file_in_res(data, name):
-    """Save a file in the res folder."""
-    # go to the res folder in the current working directory
-    os.chdir(os.getcwd())
-    os.chdir("res")
-
-    with open(name, "w+") as f:
-        geojson.dump(data, f)
-
-    # we need to change back to the inital directory because otherwise the
-    # program will fail the next time
-    os.chdir("../")
-
-def get_map_by_name(area_name, responseformat="geojson"):
+# case insensitive
+def get_map_by_name(area_name):
     """Give area data from a given area name."""
-    overpass_api = overpass.API()
+    overpass_api = overpy.Overpass()
     query = lambda s:'node[name="%s"];%s(around:1000.0);out geom;' % (area_name, s)
-    get_data = lambda s: overpass_api.Get(query(s), responseformat=responseformat)
+    get_data = lambda s: overpass_api.query(query(s))
+    ways = get_data("way").ways
+    way_ids = map(lambda x: x.id, ways)
 
-    return [get_data("node"), get_data("way")]
+    return way_ids
 
-# currently just used for testing
+def get_past_map(area_name, date):
+    """Give area data from a given area name."""
+    date = format_date(date)
+    overpass_api = overpy.Overpass()
+    query = lambda s:'[date:"%s"];node[name="%s"];%s(around:1000.0);out geom;' % (date, area_name, s)
+    get_data = lambda s: overpass_api.query(query(s))
+    ways = get_data("way").ways
+    way_ids = map(lambda x: x.id, ways)
+
+    return way_ids
+
+# Can be made more efficient
+def get_difference(area_name, start_date, end_date):
+    """Gets the nodes which were added after a certain time."""
+    old_ways = get_past_map(area_name, start_date)
+    new_ways = get_past_map(area_name, end_date)
+    difference_ways = set(new_ways) - set(old_ways)
+
+    if len(difference_ways) == len(set(new_ways)):
+        return []
+
+    return [list(difference_ways), old_ways, new_ways]
+
+
+def get_num_hospitals(area_name):
+    """Gives the number of hospitals in the area and the corresponding ids."""
+    overpass_api = overpass.API()
+    query = 'node[name="%s"];way(around:1000.0)[amenity="hospital"];' % (area_name)
+    data = overpass_api.Get(query)
+    return [count_response(data), get_ids(data)]
+
+def get_num_schools(area_name):
+    """Gives the number of schools in the area and the corresponding ids."""
+    overpass_api = overpass.API()
+    query = 'node[name="%s"];way(around:1000.0)[amenity="school"];' % (area_name)
+    data = overpass_api.Get(query)
+    return [count_response(data), get_ids(data)]
+
+def format_date(date):
+    """Format date from YYYYMMDD to YYYY-MM-DDTHH-MM:SSZ."""
+    year = date[:4]
+    month = date[4:6]
+    day = date[6:8]
+    return "%s-%s-%sT00-01-00Z" % (year, month, day)
+
+
+# just used for testing
 if __name__ == '__main__':
-    date = '2015-02-10T01:01:01Z'
+    date2 = "20130811"
+    today = "20160218"
     # coordinates of chitambo village
     min_lat, min_lon, max_lat, max_lon = -12.92, 30.62, -12.90, 30.64
     center_lat, center_lon = -12.9153429, 30.6362802
 
-    nodes, ways = get_map_by_name("Chitambo")
-    save_file_in_res(nodes, "nodes_chitambo.geojson")
-    save_file_in_res(ways, "ways_chitambo.geojson")
+    print get_num_schools("Chitambo")
