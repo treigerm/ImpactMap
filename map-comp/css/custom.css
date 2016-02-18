@@ -37,6 +37,8 @@ body {
 .btn-success {
   margin-top: 30px;
   float: left;
+  font-size: 20px;
+  height: 90px;
 }
 
 
@@ -51,18 +53,24 @@ body {
   margin-top: 50px;
 }
 
+.form-group {
+  margin: 0px;
+}
+
 h1.title {
   margin-top: 50px;
 }
 
 .content-back {
-  background-color:rgba(0, 0, 0, 0.4);
-  padding-bottom: 200px;
-  padding-top: 105px;
+  margin-top: 25%;
+  background-color:rgba(0, 0, 0, 0.38);
+  padding-bottom: 135px;
+  padding-top: 45px;
   padding-left: 50px;
   padding-right: 50px;
   max-width: 780px;
   color: white;
+  border-radius: 7px;
 }
 
 .form-control {
@@ -81,8 +89,9 @@ h1.title {
 }
 
 .btn-success {
-  width: 100%;
-  margin-top: 80px;
+  width: 40%;
+  margin-left: 30%;
+  margin-top: 40px;
   height: 50px;
   display: block;
 }
@@ -99,3 +108,34 @@ h1.title {
     margin-bottom: 0px;
     font-size: 30px;
   }
+
+  .select2-container--default .select2-selection--single .select2-selection__arrow {
+      height: 26px;
+      position: absolute;
+      top: 1px;
+      right: 1px;
+      width: 20px;
+      display: none;
+  }
+
+  .select2-container .select2-selection--single .select2-selection__rendered {
+    display: block;
+    padding-left: 20px;
+    padding-right: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.select2-container .select2-selection--single {
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    height: 80px;
+    padding-top: 25px;
+    line-height: 80px;
+    vertical-align: middle;
+    width: 100%;
+    margin-bottom: -30px;
+    font-size: 30px;
+}

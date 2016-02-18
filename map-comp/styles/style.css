@@ -26,8 +26,13 @@ h1 span {
 
 .stat {
   text-align: center;
-  margin-top: 100px;
-  height: 250px;
+  margin-top: -1px;
+  padding-top: 50px;
+  padding-bottom: 30px;
+}
+
+.color1 {
+  /*background-color: gray;*/
 }
 
 /*.stat-mid {
@@ -37,11 +42,8 @@ h1 span {
 
 .stat-mid-right {
   border-right: 1px solid lightgray;
-} */
+}*/
 
-.color1 {
-  background-color: gray;
-}
 
 .stat-title {
   margin-bottom: 30px;
@@ -63,6 +65,10 @@ a:hover {
 .footer {
   margin-top: 150px;
   text-align: center;
+}
+
+.icon {
+  max-width: 20%;
 }
 
 .img-responsive {
