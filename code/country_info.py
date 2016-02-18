@@ -16,7 +16,9 @@ class Country(object):
 	def __init__(self, name, populationDensity, mobileOwners, waterAccess):
 		self.name = name
 		self.populationDensity = populationDensity
+		# mobile subscription per 100 people
 		self.mobileOwners = mobileOwners
+		# % of people having access to clean water
 		self.waterAccess = waterAccess
 
 # init empty array
@@ -28,12 +30,17 @@ def getCountryList():
 	for country in root.findall('Country'):
 		countriesCounter = countriesCounter + 1
 
-	countries = [Country('','','','') for x in range(countriesCounter)]
+	countries = [Country('',0,0,0) for x in range(countriesCounter)]
 	i = 0
 
 	# fill array with fetched countries
 	for country in root:
-		countries[i] = Country(country.find('Name').text,country.find('PopulationDensity').text,country.find('MobileOwners').text,country.find('WaterAccess').text)	
+
+		name 			= country.find('Name').text
+		pop_density 	= country.find('PopulationDensity').text
+		mobile_subs 	= country.find('MobileOwners').text
+		water_access 	= country.find('WaterAccess').text
+		countries[i]	= Country(name,pop_density,mobile_subs,water_access)	
 		i = i + 1
 
 	return countries

@@ -9,6 +9,15 @@ from mysql.connector import errorcode
 
 # import country info file (local)
 import country_info
+import distance_calculator as dc
+
+import MapFetcher as mf
+
+
+#geoJson = json.dumps(geoJson,separators=(',', ':'))
+
+# import math to compute area searched
+import math
 
 # Flask imports
 
@@ -22,7 +31,6 @@ app = Flask(__name__)
 
 # get country list
 countries = country_info.getCountryList()
-#countries2 = ['France','Luxembourg','Belgium','Germany']
 
 # setup DB connection, cursor
 
@@ -34,7 +42,7 @@ add_search = ("INSERT INTO search"
 			"(region, start_date, end_date, pop_density, area, mobile_subs, water_access)"
 			"VALUES (%s,%s,%s,%s,%s,%s,%s)")
 
-# connection checker (terminal)
+# connection checker (command line)
 
 if (db_connection):
 	print 'works'
@@ -56,6 +64,23 @@ def search():
 	start_date = request.form['start_date']
 	end_date = request.form['end_date']
 
+	# getting lat, lon from OSM API call
+
+	# USING JAZON'S PSEUDOCODE
+
+	# getting and manipulating data from XML
+	country = filter(lambda x: x.name == region, countries)[0]
+	pop_density = float(country.populationDensity)
+	area = 30
+	mobile_subs = 100 - float(country.mobileOwners)
+
+	if mobile_subs <= 0:
+		mobile_access = 0
+	else:
+		mobile_access = pop_density * area * ((mobile_subs)/100)
+
+	water_access = pop_density * area * (1 - (float(country.waterAccess))/100)
+
 	# start date string split
 	mm, dd, yyyy = start_date.split('/')
 	start_date = dd + mm + yyyy
@@ -69,7 +94,7 @@ def search():
 	# COMPLETE THIS
 
 	# creating db instance with form date
-	data_search = (region, start_date, end_date, 0, 0, 0, 0)
+	data_search = (region, start_date, end_date, pop_density, 0, mobile_access, water_access)
 	# opening cursor
 	cursor = db_connection.cursor()
 	#write to DB
@@ -83,6 +108,18 @@ def search():
 	# Redirect after successful input
 	return redirect('/')
 
+# tester for Leaflet numbers retrieval
+@app.route('/test')
+def test():
+	return render_template('test.html')
+
+# page returns clean GEOJSON. JavaScript GETs and parses this.
+@app.route("/geojson.json")
+def hello():
+	geojson = mf.get_map_by_name('Chitambo')	
+	return json.dumps(geojson)
+
+# about page. Project explanations and Credits.
 @app.route('/about')
 def about():
 	return 'this is us'
@@ -96,4 +133,3 @@ def page_not_found(error):
 if __name__ == '__main__':
     app.run(debug=True)
 
- 
