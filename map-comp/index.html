@@ -7,60 +7,82 @@
     <link rel="stylesheet" href="theme/bootstrap.css" media="screen">
     <link rel="stylesheet" href="theme/usebootstrap.css">
     <link rel="stylesheet" href="styles/style.css" />
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.0.min.js"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="bootstrap/html5shiv.js"></script>
       <script src="bootstrap/respond.min.js"></script>
     <![endif]-->
+
   </head>
   <body>
     <div class="container">
+      <div class="title-bar">
+        <h1 class="title-bar"><span>IMPACT</span> Map</h1>
+      </div>
+    </div>
 
-      <div class="page-header" id="banner">
+    <div class="container-fluid">
+
         <div class="row">
-          <div class="col-lg-6">
-            <h1>Welcome</h1>
-            <p class="lead">Médecins Sans Frontières Map Changes Viewer</p>
+          <div class="col-lg-6 map">
+            <img src="images/mapSpain.png" alt="" class = "img-responsive" />
+          </div>
+          <div class="col-lg-6 map">
+            <img src="images/mapSpain.png" alt="" class = "img-responsive"/>
           </div>
         </div>
-      </div>
 
-      <div class="maps">
-
-        <img src="images/mapSpain.png" alt="" class = "img-responsive-own map" />
-
-        <img src="images/mapSpain.png" alt="" class = "img-responsive-own map"/>
-
-      </div>
 
       <div style="height:5px; width:100%; display: inline-block">&nbsp;</div>
 
-      <h2 class="stat-title">Statistics</h2>
-
-      <div class="row">
+      <a href="#link-to-wikipedia"><div class="row row-maps" alt="Go to Wikipedia">
 
 
           </div>
-          <div class="col-lg-4 stat">
-              <img src="images/uni.png" alt="" />
-              <h3>3</h3>
-              <h4>Schools in the area</h2>
+          <div class="col-lg-2 stat color1">
+            <img src="images/earth.png" alt="" class="icon" />
+            <h3><span class="Count" id="count1">2345</span> km<sup>2</sup></h3>
+            <h4>area added to the map</h2>
           </div>
 
-          <div class="col-lg-4 stat stat-mid">
-            <img src="images/first-aid-kit.png" alt="" />
-            <h3>1</h3>
-            <h4>Hospital in the area</h2>
+          <div class="col-lg-2 stat stat-mid">
+            <img src="images/group.png" alt="" class="icon" />
+            <h3><span class="Count" id="count2">2307123</span></h3>
+            <h4>people put on the map</h2>
+
+          </div>
+
+          <div class="col-lg-2 stat stat-mid-right">
+            <img src="images/bathroom-faucet-tool.png" alt="" class="icon" />
+            <h3><span class="Count"id="count3">14785</span></h3>
+            <h4>people without clear water put on the map</h4>
+
+          </div>
+          <div class="col-lg-2 stat stat-mid-right">
+            <img src="images/old-mobile.png" alt="" class="icon" />
+            <h3><span class="Count" id="count4">23057</span></h3>
+            <h4>people without mobile subscription put on the map</h4>
+
           </div>
 
 
-          <div class="col-lg-4 stat">
-            <img src="images/earth.png" alt="" />
-            <h3>2345</h3>
-            <h4>km<sup>2</sup> of area covered</h2>
+          <div class="col-lg-2 stat stat-mid-right">
+            <img src="images/first-aid-kit.png" alt="" class="icon" />
+            <h3><span class="Count" id="count5">1</span></h3>
+            <h4>hospitals added</h4>
           </div>
-        </div>
+
+          <div class="col-lg-2 stat">
+
+              <img src="images/uni.png" alt=""class="icon"  />
+              <h3><span class="Count" id="count6">3</span></h3>
+              <h4>schools added</h4>
+          </div>
+
+    </div>
+  </a>
 
 
     <div class="footer">
