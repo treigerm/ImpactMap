@@ -5,15 +5,19 @@ import os
 import geojson
 import json
 import overpy
-import re
+import xml.etree.ElementTree as ET
 
 
-def get_ids(f_type, get_data):
-    json_string = json.dumps(get_data(f_type))
+def get_ids(data):
+    json_string = json.dumps(data)
     j = json.loads(json_string)
     node_ids = [ f["id"] for f in j["features"]]
     return node_ids
 
+def count_response(response):
+    json_string = json.dumps(response)
+    j = json.loads(json_string)
+    return len(j["features"])
 
 # TO DO:
 # case insensitive
@@ -51,16 +55,19 @@ def get_difference(area_name, start_date, end_date):
     return [list(difference_ways), old_ways, new_ways]
 
 
-# TO DO:
-# get number of hostpitals, schools
 def get_num_hospitals(area_name):
+    """Gives the number of hospitals in the area and the corresponding ids."""
     overpass_api = overpass.API()
-    query = 'node[name="%s"];way(around:1000.0)[amenity="hospital"];out geom;' % (area_name)
-    data = overpass_api.Get(query, responseformat="xml")
-    tree = ET.parse('country_data.xml')
-    root = tree.getroot()
-    num_hospitals = dt["elements"][0]["count"]["total"]
-    return get_num_hospitals
+    query = 'node[name="%s"];way(around:1000.0)[amenity="hospital"];' % (area_name)
+    data = overpass_api.Get(query)
+    return [count_response(data), get_ids(data)]
+
+def get_num_schools(area_name):
+    """Gives the number of schools in the area and the corresponding ids."""
+    overpass_api = overpass.API()
+    query = 'node[name="%s"];way(around:1000.0)[amenity="school"];' % (area_name)
+    data = overpass_api.Get(query)
+    return [count_response(data), get_ids(data)]
 
 def format_date(date):
     """Format date from YYYYMMDD to YYYY-MM-DDTHH-MM:SSZ."""
@@ -79,10 +86,4 @@ if __name__ == '__main__':
     min_lat, min_lon, max_lat, max_lon = -12.92, 30.62, -12.90, 30.64
     center_lat, center_lon = -12.9153429, 30.6362802
 
-    try:
-        nodes3, ways3 = get_difference("Chitambo", date2, today)
-    except ValueError:
-        print "It worked! Kanye would be proud!"
-
-    #print nodes3
-    #print len(nodes3)
+    print get_num_schools("Chitambo")
