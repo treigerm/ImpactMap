@@ -180,16 +180,23 @@ def test():
 	difference_isEmpty = False
 
 	city = str(city_global)
+	constant = 0.009
 
 	try:
 		start_coord = mf.get_start(city)
+		c_lon, c_lat = start_coord
+		min_lon = c_lon - constant
+		min_lat = c_lat - constant
+		max_lat = c_lat + constant
+		max_lon = c_lon + constant
+
 		hospitals, h_ids = mf.get_num_hospitals(city)
 		schools, s_ids = mf.get_num_schools(city)
 		difference_ways, old_ways = mf.get_difference(city,start_date_global, end_date_global)
 	except ValueError:
 		difference_isEmpty = True
 
-	return render_template('test.html',ways_updated=difference_ways,ways_old=old_ways,area=area,population=population,mobile=mobile,water=water,country=country, start_coord=start_coord, hospitals=hospitals, schools=schools)
+	return render_template('test.html',ways_updated=difference_ways,ways_old=old_ways,area=area,population=population,mobile=mobile,water=water,country=country, start_coord=start_coord, hospitals=hospitals, schools=schools, min_lon=min_lon, min_lat=min_lat, max_lat=max_lat, max_lon=max_lon)
 
 # page returns clean GEOJSON. JavaScript GETs and parses this. Currently not used.
 @app.route("/geojson.json")
