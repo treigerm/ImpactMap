@@ -1,0 +1,79 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html>
+<head>
+<style>
+.row:after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+[class*="col-"] {
+    float: center;
+    text-align: center;
+}
+
+.outer {
+    display: table;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.middle {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.inner {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%
+}
+
+/* For mobile phones: */
+[class*="col-"] {
+    width: 100%;
+}
+
+/* For width smaller than 768x: */
+body {
+    background-image: url('http://i.imgur.com/5kV2gUE.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+/* For width 768px and larger: */
+@media only screen and (min-width: 768px) {
+    body {
+        background-image: url('http://i.imgur.com/GfTRTtU.jpg');
+        background-repeat: no-repeat;
+    	background-size: 100% 100%;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="col-2">
+<div class="outer">
+<div class="middle">
+<div class="inner">
+
+<a class="twitter-timeline"
+href="https://twitter.com/kanyewest"
+data-widget-id="700383372326105088"
+data-tweet-limit="1"
+data-chrome="nofooter noborders noheader noscrollbar"
+data-aria-polite="assertive">
+greatness takes time to load
+</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+</div>
+</div>
+</div>
+</div>
+
+</body>
+</html>

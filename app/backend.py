@@ -200,10 +200,9 @@ def test():
 	return render_template('test.html',ways_updated=difference_ways,ways_old=old_ways,area=area,population=population,mobile=mobile,water=water,country=country, start_coord=start_coord, hospitals=hospitals, schools=schools, min_lon=min_lon, min_lat=min_lat, max_lat=max_lat, max_lon=max_lon)
 
 # page returns clean GEOJSON. JavaScript GETs and parses this. Currently not used.
-@app.route("/geojson.json")
+@app.route("/datatoMap")
 def hello():
-	geojson = mf.get_map_by_name('Chitambo')
-	return json.dumps(geojson)
+	return render_template('yeezus.html')
 
 # about page. Project explanations and Credits.
 @app.route('/about')
