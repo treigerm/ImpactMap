@@ -206,7 +206,7 @@
     northEast = L.latLng({{max_lon}}, {{max_lat}}),
     bounds = L.latLngBounds(southWest, northEast);
 
-    L.mapbox.accessToken = 'pk.eyJ1IjoiamF6b25zeiIsImEiOiJjaWtzZ2J2N3kwMDFpdzBqNzF6eGY3bGNzIn0.oeMS0nJIKd-V65U1wazozA';
+    L.mapbox.accessToken = '<--- insert accessToken --->';
     var map = L.mapbox.map('map', 'mapbox.light', { maxBounds : bounds, minZoom : 15 });
 
     var oldmap = L.mapbox.map('oldmap', 'mapbox.light', { maxBounds : bounds, minZoom : 15 });
