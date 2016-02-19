@@ -16,6 +16,14 @@ def count_response(response):
     j = json.loads(json_string)
     return len(j["features"])
 
+def get_coords(data):
+    json_string = json.dumps(data)
+    j = json.loads(json_string)
+    first_result = j["elements"][0]
+    return [first_result["lat"], first_result["lon"] ]
+
+
+
 # TO DO:
 # case insensitive
 def get_map_by_name(area_name):
@@ -50,6 +58,13 @@ def get_difference(area_name, start_date, end_date):
         return []
 
     return [list(difference_ways), old_ways, new_ways]
+
+def get_start(area_name):
+    """Gets the starting coodrinates of the map."""
+    overpass_api = overpass.API()
+    query = 'node[name="%s"];out geom;' % area_name
+    data = data = overpass_api.Get(query)
+    return get_coords(data)
 
 
 def get_num_hospitals(area_name):
