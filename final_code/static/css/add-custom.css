@@ -1,0 +1,126 @@
+h1.title {
+  font-family: 'Lato', sans-serif;
+  font-size: 25px;
+  margin-top: -30px;
+  margin-bottom: 120px;
+}
+
+h1.title-bar {
+    font-family: 'Lato', sans-serif;
+    font-size: 25px;
+    margin-bottom: 75px;
+    margin-top: -30px;
+}
+
+h1 span {
+  font-weight: 900;
+}
+
+h4, .h4, h5, .h5, h6, .h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+#banner {
+  margin-top: -20px;
+}
+
+.stat {
+  color: #fff;
+  text-align: center;
+  margin-top: -1px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/* colors for single counts
+*/
+
+#count1 {
+  background-color: #22ADC2;
+}
+
+#count2 {
+  background-color: #992C61;
+}
+
+#count3 {
+  background-color: #FFBF1E;
+}
+
+#count4 {
+  background-color: #FF631B;
+}
+
+#count5 {
+  background-color: #FF244A;
+}
+
+#count6 {
+  background-color: #CEEC56;
+}
+
+.color1 {
+  /*background-color: gray;*/
+}
+
+/*.stat-mid {
+  border-right: 1px solid lightgray;
+  border-left: 1px solid lightgray;
+}
+
+.stat-mid-right {
+  border-right: 1px solid lightgray;
+}*/
+
+
+.stat-title {
+  margin-bottom: 30px;
+  margin-top: 100px;
+}
+
+.stat-row {
+  text-align: center;
+}
+
+a {
+  color: black;
+}
+
+a:hover, a:focus {
+  color: black;
+}
+
+.footer {
+  margin-top: 150px;
+  text-align: center;
+}
+
+.icon {
+  max-width: 20%;
+}
+
+.img-responsive {
+    min-width: 100%;
+}
+
+.map {
+  width: 50%;
+  padding: 0;
+}
+
+  .map h2 {
+    text-align: center;
+  }
+
+@media only screen and (max-width: 1200px) {
+  .stat-mid {
+    border: none;
+  }
+  .stat-mid-right {
+    border: none;
+  }
+  .col-lg-6 {
+    width: 100%;
+  }
+}
