@@ -49,6 +49,7 @@ for country in country_names:
 config = {
   'user': 'root',
   'password': 'root',
+  'port':'8889',
   'host': 'localhost',
   'database': 'HelloWorld',
   'unix_socket': '/Applications/MAMP/tmp/mysql/mysql.sock'
