@@ -162,9 +162,8 @@ def search():
 # tester for Leaflet numbers retrieval
 @app.route('/search_result')
 def test():
-	# getting nodes and ways from OSM API
-	#nodes, ways = mf.get_map_by_name('Chitambo')
-	#nodes2, ways2 = mf.get_past_map('Chitambo',start_date)
+	if start_date_global == "" or end_date_global == "" or area_global == 0 or city_global == "":
+		return redirect('/')
 
 	# converting global dates to str()
 	global start_date_global
