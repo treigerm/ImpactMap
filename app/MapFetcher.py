@@ -4,26 +4,6 @@ import geojson
 import json
 import overpy
 
-
-def get_ids(data):
-    json_string = json.dumps(data)
-    j = json.loads(json_string)
-    node_ids = [ f["id"] for f in j["features"]]
-    return node_ids
-
-def count_response(response):
-    json_string = json.dumps(response)
-    j = json.loads(json_string)
-    return len(j["features"])
-
-def get_coords(data):
-    json_string = json.dumps(data)
-    j = json.loads(json_string)
-    first_result = j["elements"][0]
-    return [first_result["lat"], first_result["lon"] ]
-
-
-
 # TO DO:
 # case insensitive
 def get_map_by_name(area_name):
@@ -57,7 +37,7 @@ def get_difference(area_name, start_date, end_date):
     if len(difference_ways) == len(set(new_ways)):
         return []
 
-    return [list(difference_ways), old_ways, new_ways]
+    return [list(difference_ways), old_ways]
 
 def get_start(area_name):
     """Gets the starting coodrinates of the map."""
@@ -88,6 +68,29 @@ def format_date(date):
     day = date[6:8]
     return "%s-%s-%sT00-01-00Z" % (year, month, day)
 
+# helper functions to perse json strings
+def get_ids(data):
+    json_string = json.dumps(data)
+    j = json.loads(json_string)
+    node_ids = [ f["id"] for f in j["features"]]
+    return node_ids
+
+def count_response(response):
+    json_string = json.dumps(response)
+    j = json.loads(json_string)
+    return len(j["features"])
+
+def get_coords(data):
+    json_string = json.dumps(data)
+    j = json.loads(json_string)
+    try:
+        first_result = j["features"][0]
+    except IndexError:
+        return []
+
+    geometry = first_result["geometry"]
+    return [geometry["coordinates"][1], geometry["coordinates"][0]]
+
 
 # just used for testing
 if __name__ == '__main__':
@@ -97,4 +100,4 @@ if __name__ == '__main__':
     min_lat, min_lon, max_lat, max_lon = -12.92, 30.62, -12.90, 30.64
     center_lat, center_lon = -12.9153429, 30.6362802
 
-    print get_num_schools("Chitambo")
+    print get_start("sefqwgrsf")

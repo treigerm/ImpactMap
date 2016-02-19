@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- don't forget to write stuff in here -->
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>MSF ImpactMap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Custom Bootstrap lib style for this template -->
+    <link href="{{ url_for('static', filename='css/usebootstrap.min.css') }}" rel="stylesheet">    
+
+    <!-- Style for DatePicker -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.min.css" />
+
+    <!-- Style for Select2 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2-rc.1/css/select2.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='css/custom.css') }}" rel="stylesheet">
+
+    <style type="text/css">
+    body {
+      background-image: url("http://cdn.msf.org/sites/msf.org/files/styles/gallery/https/media.msf.org/Docs/MSF/Media/CMS1/c/f/2/3/MSB13927.jpg?itok=TFpUull0");
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-position-y: -80px;
+    }
+    </style>
+
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="page-header">
+        <h2 style="color:#fff;text-shadow: 0 0 1px #000;">ImpactMap</h2>
+        <h4>understanding the impact of mapping</h4>
+      </div>
+
+      <div class="row main-row">
+        <div class="col-md-6 col-md-offset-3">
+
+          <!-- form below POSTS collected info to search -->
+          <form action="/search" method="post">
+
+            <div class="form-group">
+
+              <div class="form-group">
+
+                <!-- Region selector, could be populated by @jazon's code -->
+                <select name="region" class="form-control js-example-basic-single">
+                  <!-- code below fetches country names in XML -->
+
+                  {% for city in cities %}
+                  <option>{{ city }}</option>
+                  {% endfor %}
+
+                </select>            
+              </div>
+
+              <div class="form-group">
+                <!-- date submission-->
+                <div class="input-group input-daterange">
+
+                <input name="start_date" type="text" class="form-control" value="Select start date" readonly>
+                <span class="input-group-addon">to</span>
+
+                <input name="end_date" type="text" class="form-control" value="Select end date" readonly>
+                </div>
+              </div>
+
+            <!-- submission button -->
+            <!-- note: must be <input> not <div> for button to work -->
+            <div class="col-md-4 col-md-offset-4">
+            <input type="submit" value="Map the difference" class="btn btn-large btn-block btn-success"></input>
+            </div>
+
+            </div>
+          </form> <!-- form ends here -->
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row footer footer-first" >
+      <div class="col-md-6 col-md-offset-3">
+        <a href="/about"><h5>ImpactMap, Smart Data Hack 2016, Edinburgh</h5></a>
+        <a href="http://www.msf.org/article/gallery-drc-ambitious-vaccination-campaign-war-torn-congo"><h5>© RDC, photo by MSF</h5></a>
+      </div>
+    </div>
+
+    <!-- JQuery import via CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2-rc.1/js/select2.min.js"></script>
+
+    <!-- Datepicker JS, autoclose set to true for the window to close after selection -->
+    <script>
+    $('.input-group.input-daterange').datepicker({
+      autoclose: true      
+      });
+    </script>
+
+    <!-- Select2 JS -->
+    <script type="text/javascript">
+    $(document).ready(function() {
+      $(".js-example-basic-single").select2();
+      }      
+    );
+    </script>
+
+  </body>
+</html>

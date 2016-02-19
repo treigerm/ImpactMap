@@ -1,0 +1,114 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  background-color: white;
+  background-image: url("../images/earth-space.jpg");
+}
+
+.main-row {
+  margin-top: 10%;
+}
+
+/* INDEX STYLES
+*/
+
+.page-header {
+  border-bottom: none;
+}
+
+.select2-container {
+  font-size: 36px;
+}
+
+.select2-container--default .select2-results>.select2-results__options, .select2-search--dropdown {
+  font-size: 16px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  line-height: 54px;
+}
+
+.select2-container .select2-selection--single .select2-selection__rendered {
+  padding-left: 18px;
+}
+
+.select2-container .select2-selection--single {
+  height: 60px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  display: none;
+}
+
+.footer {
+  /* Set the fixed height of the footer here */
+  height: 0;
+  margin-top: 0;
+  padding-bottom: 40px;
+  padding-top: 10px;
+  text-align: center;
+}
+
+  .footer-first {
+    padding-top: 12%;
+  }
+
+    .footer-first a {
+      color: #fff;
+      text-shadow: 0 0 1px #000;
+      text-decoration: none;
+    }
+
+/* MAP CUSTOMIZATIONS
+*/
+
+#map, #oldmap {
+  height: 480px;
+}
+
+.superrow {
+  height: 175px;
+  background-color: transparent;
+  position: absolute;
+  z-index: 1000;
+  width: 100%;
+  margin-top: -1px;
+  transition: 0.6s;
+  -moz-transition: 0.6s;
+  -webkit-transition: 0.6s;
+}
+
+.superrow:hover {
+  background-color: hsla(0, 0%, 0%, 0.5);
+  transition: 0.85s;
+  -moz-transition: 0.85s;
+  -webkit-transition: 0.85s;
+}
+
+  .superrow:hover .wikipedia {
+    display: block;
+  }
+
+  .wikipedia {
+    display: none;
+    text-align: center;
+    padding-top: 45px;
+    text-decoration: none;
+  }
+
+    .wikipedia a {
+      color: #fff;
+      text-shadow: 0 0 2px #000;
+    }
+  
+/* BOOTSTRAP CUSTOMIZATIONS
+*/
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+  background-color: #fff;
+  cursor: pointer;
+}
