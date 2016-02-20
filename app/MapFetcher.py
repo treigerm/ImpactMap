@@ -4,8 +4,6 @@ import geojson
 import json
 import overpy
 
-# TO DO:
-# case insensitive
 def get_map_by_name(area_name):
     """Give area data from a given area name."""
     overpass_api = overpy.Overpass()

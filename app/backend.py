@@ -197,7 +197,7 @@ def test():
 	except ValueError:
 		difference_isEmpty = True
 
-	return render_template('test.html',ways_updated=difference_ways,ways_old=old_ways,area=area,population=population,mobile=mobile,water=water,country=country, start_coord=start_coord, hospitals=hospitals, schools=schools, min_lon=min_lon, min_lat=min_lat, max_lat=max_lat, max_lon=max_lon)
+	return render_template('search.html',ways_updated=difference_ways,ways_old=old_ways,area=area,population=population,mobile=mobile,water=water,country=country, start_coord=start_coord, hospitals=hospitals, schools=schools, min_lon=min_lon, min_lat=min_lat, max_lat=max_lat, max_lon=max_lon)
 
 # page returns clean GEOJSON. JavaScript GETs and parses this. Currently not used.
 @app.route("/datatoMap")
